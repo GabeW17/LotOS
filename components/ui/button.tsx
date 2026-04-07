@@ -19,8 +19,8 @@ const variantStyles: Record<Variant, React.CSSProperties> = {
 
 const sizeStyles: Record<Size, React.CSSProperties> = {
   sm: { padding: '5px 12px', fontSize: 13 },
-  md: { padding: '7px 16px', fontSize: 13 },
-  lg: { padding: '10px 20px', fontSize: 14 },
+  md: { padding: '10px 16px', fontSize: 13 },
+  lg: { padding: '12px 20px', fontSize: 14 },
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(

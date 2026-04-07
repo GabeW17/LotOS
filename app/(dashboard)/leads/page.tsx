@@ -120,7 +120,7 @@ export default function LeadsPage() {
 
   if (loading) {
     return (
-      <div className="flex" style={{ height: 'calc(100vh - 108px)', margin: -28 }}>
+      <div className="flex" style={{ height: 'calc(100vh - 108px)', margin: 'calc(var(--dash-pad) * -1)' }}>
         <div style={{ width: 320, borderRight: '1px solid #e8ebe6', padding: 16 }}>
           <Skeleton className="h-7 w-32 mb-4" />
           {[1, 2, 3, 4, 5].map((i) => <Skeleton key={i} className="h-14 w-full mb-2" />)}
@@ -134,9 +134,9 @@ export default function LeadsPage() {
   }
 
   return (
-    <div className="flex" style={{ height: 'calc(100vh - 108px)', margin: -28 }}>
+    <div className="flex" style={{ height: 'calc(100vh - 108px)', margin: 'calc(var(--dash-pad) * -1)' }}>
       {/* Left column — lead list */}
-      <div className={`flex flex-col ${selectedLead ? 'hidden lg:flex' : ''}`} style={{ width: 320, borderRight: '1px solid #e8ebe6', backgroundColor: '#fff' }}>
+      <div className={`flex flex-col w-full lg:w-[320px] ${selectedLead ? 'hidden lg:flex' : ''}`} style={{ borderRight: '1px solid #e8ebe6', backgroundColor: '#fff' }}>
         <div style={{ padding: '16px 16px 12px', borderBottom: '1px solid #e8ebe6' }}>
           <div className="flex items-center justify-between" style={{ marginBottom: 10 }}>
             <h1 style={{ fontSize: 16, fontWeight: 600, color: '#1a1a1a' }}>Leads</h1>
@@ -200,7 +200,7 @@ export default function LeadsPage() {
       {selectedLead ? (
         <div className="flex-1 flex flex-col min-w-0" style={{ backgroundColor: '#fff' }}>
           {/* Top bar */}
-          <div className="flex items-center justify-between" style={{ padding: '14px 24px', borderBottom: '1px solid #e8ebe6' }}>
+          <div className="flex items-center justify-between" style={{ padding: '14px 16px', borderBottom: '1px solid #e8ebe6' }}>
             <div className="min-w-0 flex-1">
               <div className="flex items-center" style={{ gap: 10 }}>
                 <h2 style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a' }}>{selectedLead.name}</h2>
@@ -248,7 +248,7 @@ export default function LeadsPage() {
           </div>
 
           {/* Message input */}
-          <div className="flex" style={{ padding: '14px 24px', borderTop: '1px solid #e8ebe6', gap: 10 }}>
+          <div className="flex" style={{ padding: '14px 16px', borderTop: '1px solid #e8ebe6', gap: 10 }}>
             <Input
               placeholder="Type a message..."
               value={newMessage}

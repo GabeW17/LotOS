@@ -86,7 +86,7 @@ export default function SettingsPage() {
             value={dealer.address ?? ''}
             onChange={(e) => setDealer({ ...dealer, address: e.target.value })}
           />
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <Input
               label="City"
               value={dealer.city ?? ''}

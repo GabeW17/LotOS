@@ -30,10 +30,10 @@ const sectionTitle = {
 function LoadingSkeleton() {
   return (
     <div>
-      <div style={{ margin: '-28px -28px 0', padding: '12px 24px', borderBottom: '1px solid #e8ebe6', background: '#fff' }}>
+      <div style={{ margin: 'calc(var(--dash-pad) * -1) calc(var(--dash-pad) * -1) 0', padding: '12px var(--dash-pad)', borderBottom: '1px solid #e8ebe6', background: '#fff' }}>
         <Skeleton className="h-8 w-64" />
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 24 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <Skeleton className="h-48 w-full rounded-lg" />
           <Skeleton className="h-48 w-full rounded-lg" />
@@ -283,23 +283,25 @@ export default function VehicleDetailPage() {
     <div>
       {/* Topbar */}
       <div style={{
-        margin: '-28px -28px 0',
+        margin: 'calc(var(--dash-pad) * -1) calc(var(--dash-pad) * -1) 0',
         background: '#fff',
         borderBottom: '1px solid #e8ebe6',
-        padding: '12px 24px',
+        padding: '12px var(--dash-pad)',
         position: 'sticky',
         top: 0,
         zIndex: 10,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: 8,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
           <Link href="/inventory" style={{ display: 'flex', alignItems: 'center', color: '#1a1a1a' }}>
             <ArrowLeft size={18} />
           </Link>
-          <span style={{ color: '#ccc' }}>&middot;</span>
-          <span style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a' }}>{vehicleName}</span>
+          <span className="hidden sm:inline" style={{ color: '#ccc' }}>&middot;</span>
+          <span className="truncate" style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a' }}>{vehicleName}</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <button
@@ -362,18 +364,18 @@ export default function VehicleDetailPage() {
       )}
 
       {/* Two-column grid */}
-      <form id="vehicle-form" onSubmit={handleSave} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 24 }}>
+      <form id="vehicle-form" onSubmit={handleSave} className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
         {/* Left Column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {/* Vehicle Details */}
           <Card style={cardStyle}>
             <h2 style={sectionTitle}>Vehicle Details</h2>
             <div className="grid grid-cols-2" style={{ gap: 10 }}>
-              <Input label="Year" className="h-[34px]" value={form.year} onChange={(e) => setForm((f) => ({ ...f, year: e.target.value }))} placeholder="2020" />
-              <Input label="Make" className="h-[34px]" value={form.make} onChange={(e) => setForm((f) => ({ ...f, make: e.target.value }))} placeholder="Honda" />
-              <Input label="Model" className="h-[34px]" value={form.model} onChange={(e) => setForm((f) => ({ ...f, model: e.target.value }))} placeholder="Civic" />
-              <Input label="Trim" className="h-[34px]" value={form.trim} onChange={(e) => setForm((f) => ({ ...f, trim: e.target.value }))} placeholder="EX-L" />
-              <Input label="Color" className="h-[34px]" value={form.color} onChange={(e) => setForm((f) => ({ ...f, color: e.target.value }))} placeholder="Silver" />
+              <Input label="Year" value={form.year} onChange={(e) => setForm((f) => ({ ...f, year: e.target.value }))} placeholder="2020" />
+              <Input label="Make" value={form.make} onChange={(e) => setForm((f) => ({ ...f, make: e.target.value }))} placeholder="Honda" />
+              <Input label="Model" value={form.model} onChange={(e) => setForm((f) => ({ ...f, model: e.target.value }))} placeholder="Civic" />
+              <Input label="Trim" value={form.trim} onChange={(e) => setForm((f) => ({ ...f, trim: e.target.value }))} placeholder="EX-L" />
+              <Input label="Color" value={form.color} onChange={(e) => setForm((f) => ({ ...f, color: e.target.value }))} placeholder="Silver" />
             </div>
           </Card>
 
@@ -381,8 +383,8 @@ export default function VehicleDetailPage() {
           <Card style={cardStyle}>
             <h2 style={sectionTitle}>Pricing & Mileage</h2>
             <div className="grid grid-cols-2" style={{ gap: 10 }}>
-              <Input label="Price" className="h-[34px]" type="number" value={form.price} onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))} placeholder="15000" />
-              <Input label="Mileage" className="h-[34px]" type="number" value={form.mileage} onChange={(e) => setForm((f) => ({ ...f, mileage: e.target.value }))} placeholder="45000" />
+              <Input label="Price" type="number" value={form.price} onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))} placeholder="15000" />
+              <Input label="Mileage" type="number" value={form.mileage} onChange={(e) => setForm((f) => ({ ...f, mileage: e.target.value }))} placeholder="45000" />
             </div>
           </Card>
 
@@ -425,7 +427,7 @@ export default function VehicleDetailPage() {
                 Sold
               </button>
             </div>
-            <div style={{ display: 'flex', gap: 6 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {([
                 { value: 'recon' as InventoryStatus, label: 'In Recon' },
                 { value: 'listed' as InventoryStatus, label: 'Listed' },
@@ -436,7 +438,7 @@ export default function VehicleDetailPage() {
                   type="button"
                   onClick={() => setForm((f) => ({ ...f, status: opt.value }))}
                   style={{
-                    padding: '5px 10px',
+                    padding: '8px 12px',
                     borderRadius: 5,
                     border: form.status === opt.value ? '1px solid #2d7a4f' : '1px solid #e8ebe6',
                     background: form.status === opt.value ? '#e8f5ee' : '#fff',

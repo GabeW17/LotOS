@@ -63,7 +63,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             height: 52,
             backgroundColor: '#fff',
             borderBottom: '1px solid #e8ebe6',
-            padding: '0 28px',
+            padding: '0 var(--dash-pad)',
           }}
         >
           <div className="flex items-center" style={{ gap: 12 }}>
@@ -93,7 +93,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </header>
 
         {/* Main content */}
-        <main className="flex-1 overflow-y-auto" style={{ padding: 28 }}>
+        <main className="flex-1 overflow-y-auto" style={{ padding: 'var(--dash-pad)' }}>
           {children}
         </main>
       </div>

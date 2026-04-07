@@ -100,7 +100,7 @@ export default function InventoryPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       {/* Top Bar */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center" style={{ gap: 12 }}>
           <h1 style={{ fontSize: 20, fontWeight: 700, color: '#1a1a1a' }}>Inventory</h1>
           <span style={{
@@ -157,7 +157,7 @@ export default function InventoryPage() {
             </button>
           ))}
         </div>
-        <span style={{ fontFamily: mono, fontSize: 11, color: '#bbb', letterSpacing: '0.2px', flexShrink: 0, paddingRight: 24 }}>
+        <span style={{ fontFamily: mono, fontSize: 11, color: '#bbb', letterSpacing: '0.2px', flexShrink: 0, paddingRight: 0 }}>
           Sort: newest first ↓
         </span>
       </div>

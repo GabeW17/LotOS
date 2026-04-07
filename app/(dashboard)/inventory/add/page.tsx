@@ -222,7 +222,7 @@ export default function AddVehiclePage() {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
           <div>
             <h2 style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a', marginBottom: 12 }}>Vehicle Details</h2>
-            <div className="grid grid-cols-2" style={{ gap: 12 }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 12 }}>
               <Input label="Year" value={form.year} onChange={(e) => setForm((f) => ({ ...f, year: e.target.value }))} placeholder="2020" />
               <Input label="Make" value={form.make} onChange={(e) => setForm((f) => ({ ...f, make: e.target.value }))} placeholder="Honda" />
               <Input label="Model" value={form.model} onChange={(e) => setForm((f) => ({ ...f, model: e.target.value }))} placeholder="Civic" />
@@ -232,7 +232,7 @@ export default function AddVehiclePage() {
 
           <div>
             <h2 style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a', marginBottom: 12 }}>Pricing & Mileage</h2>
-            <div className="grid grid-cols-2" style={{ gap: 12 }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 12 }}>
               <Input label="Price" type="number" value={form.price} onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))} placeholder="15000" />
               <Input label="Mileage" type="number" value={form.mileage} onChange={(e) => setForm((f) => ({ ...f, mileage: e.target.value }))} placeholder="45000" />
             </div>

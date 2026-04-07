@@ -90,7 +90,7 @@ export default function InventorySection({ apiUrl, dealerId }: InventorySectionP
   }
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-12">
+    <section className="mx-auto max-w-7xl px-4 py-8 sm:py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {vehicles.map((v) => (
           <div
@@ -111,7 +111,7 @@ export default function InventorySection({ apiUrl, dealerId }: InventorySectionP
               </div>
             )}
             <div className="p-4">
-              <h3 className="font-semibold text-lg text-gray-900">{title(v)}</h3>
+              <h3 className="font-semibold text-base sm:text-lg text-gray-900 break-words">{title(v)}</h3>
               {v.trim && <p className="text-sm text-gray-500">{v.trim}</p>}
               <div className="flex items-center justify-between mt-2">
                 <span className="text-lg font-bold text-gray-900">{formatPrice(v.price)}</span>
@@ -121,7 +121,7 @@ export default function InventorySection({ apiUrl, dealerId }: InventorySectionP
               </div>
               <button
                 onClick={() => setSelected(v)}
-                className="mt-3 w-full rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 transition-colors"
+                className="mt-3 w-full rounded-lg bg-gray-900 px-4 py-3 text-sm font-medium text-white hover:bg-gray-800 transition-colors"
               >
                 View Details
               </button>
@@ -140,11 +140,11 @@ export default function InventorySection({ apiUrl, dealerId }: InventorySectionP
         >
           <div
             ref={modalRef}
-            className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 shadow-xl"
+            className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-4 sm:p-6 shadow-xl"
           >
             <button
               onClick={() => setSelected(null)}
-              className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700 transition-colors"
+              className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700 transition-colors"
             >
               <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -153,19 +153,19 @@ export default function InventorySection({ apiUrl, dealerId }: InventorySectionP
 
             {/* Photos */}
             {selected.photos && selected.photos.length > 0 && (
-              <div className="flex gap-3 overflow-x-auto pb-3 -mx-6 px-6 mb-4">
+              <div className="flex gap-3 overflow-x-auto pb-3 -mx-4 px-4 sm:-mx-6 sm:px-6 mb-4">
                 {selected.photos.map((photo, i) => (
                   <img
                     key={i}
                     src={photo}
                     alt={`${title(selected)} photo ${i + 1}`}
-                    className="h-56 min-w-[20rem] rounded-lg object-cover flex-shrink-0"
+                    className="h-48 sm:h-56 min-w-[16rem] sm:min-w-[20rem] rounded-lg object-cover flex-shrink-0"
                   />
                 ))}
               </div>
             )}
 
-            <h2 className="text-2xl font-bold text-gray-900">{title(selected)}</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 break-words">{title(selected)}</h2>
             {selected.trim && <p className="text-gray-500 mt-1">{selected.trim}</p>}
 
             <div className="flex flex-wrap gap-4 mt-3">

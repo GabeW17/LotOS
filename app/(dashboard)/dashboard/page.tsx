@@ -269,11 +269,11 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 20, margin: '-28px -28px 0', paddingTop: 0 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20, margin: 'calc(var(--dash-pad) * -1) calc(var(--dash-pad) * -1) 0', paddingTop: 0 }}>
         <div style={{ backgroundColor: '#fff', borderBottom: '1px solid #e8ebe6', padding: '10px 24px' }}>
           <Skeleton className="h-4 w-96" />
         </div>
-        <div style={{ padding: '0 28px' }}>
+        <div style={{ padding: '0 var(--dash-pad)' }}>
           <div style={{ background: '#1a3526', borderRadius: 10, padding: 28, marginBottom: 16 }}>
             <Skeleton className="h-3 w-32 mb-3 opacity-20" />
             <Skeleton className="h-10 w-48 mb-2 opacity-20" />
@@ -314,19 +314,19 @@ export default function DashboardPage() {
   const firstName = dealerName ? dealerName.split(' ')[0] : ''
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, margin: '-28px -28px 0', paddingTop: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, margin: 'calc(var(--dash-pad) * -1) calc(var(--dash-pad) * -1) 0', paddingTop: 0 }}>
       {/* Morning Briefing */}
       <div className="flex items-center justify-between" style={{ backgroundColor: '#fff', borderBottom: '1px solid #e8ebe6', padding: '8px 24px' }}>
         <p style={{ fontSize: 13, color: '#444', lineHeight: 1.4 }}>
           {getGreeting()}, <span style={{ color: '#1a1a1a', fontWeight: 500 }}>{firstName || 'there'}</span> — <span style={{ fontWeight: 700, color: '#2d7a4f' }}>{stats?.totalCars ?? 0}</span> cars on lot · AI responded to <span style={{ fontWeight: 700, color: '#2d7a4f' }}>{stats?.aiLeadsOvernight ?? 0}</span> leads overnight · <span style={{ fontWeight: 700, color: '#2d7a4f' }}>{stats?.appointmentsToday ?? 0}</span> appointments today
         </p>
-        <span style={{ fontSize: 11, color: '#bbb', fontFamily: mono, flexShrink: 0, marginLeft: 16 }}>Updated just now</span>
+        <span className="hidden sm:inline" style={{ fontSize: 11, color: '#bbb', fontFamily: mono, flexShrink: 0, marginLeft: 16 }}>Updated just now</span>
       </div>
 
       {/* Stats Section */}
-      <div style={{ padding: '0 28px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '0 var(--dash-pad)' }}>
         {/* Hero Card — Total Lot Value */}
-        <div className="flex items-center" style={{
+        <div className="flex flex-col gap-4 md:flex-row md:items-center" style={{
           background: '#1a3526',
           borderRadius: 10,
           padding: '16px 24px',
@@ -386,7 +386,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Right sparkline */}
-          <div style={{ width: '35%', maxWidth: 200, flexShrink: 0, alignSelf: 'center' }}>
+          <div className="w-full md:w-[35%] md:max-w-[200px]" style={{ flexShrink: 0, alignSelf: 'center' }}>
             <Sparkline data={lotValData} color="#6fcf97" height={44} />
           </div>
         </div>
@@ -477,7 +477,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Bottom two columns */}
-      <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 10, padding: '0 28px', paddingBottom: 16 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 10, padding: '0 var(--dash-pad)', paddingBottom: 16 }}>
         {/* Recent Leads */}
         <div style={{ background: '#fff', border: '1px solid #e8ebe6', borderRadius: 10, padding: '14px 18px', minHeight: 0 }}>
           <div className="flex items-center justify-between" style={{ marginBottom: 10 }}>

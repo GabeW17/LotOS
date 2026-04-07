@@ -15,7 +15,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#1a1a1a', marginBottom: 4 }}
+            style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#1a1a1a', marginBottom: 6 }}
           >
             {label}
           </label>
@@ -29,8 +29,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             border: error ? '1px solid #dc3545' : '1px solid #e8ebe6',
             borderRadius: 7,
             backgroundColor: '#fff',
-            padding: '8px 12px',
-            fontSize: 14,
+            padding: '10px 12px',
+            fontSize: 16,
             color: '#1a1a1a',
             outline: 'none',
           }}
