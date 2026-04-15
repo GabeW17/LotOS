@@ -24,9 +24,14 @@ create table dealers (
   state text,
   zip text,
   logo_url text,
+  website_url text,
   created_at timestamptz default now(),
   updated_at timestamptz default now()
 );
+
+create unique index dealers_website_url_unique
+  on dealers (website_url)
+  where website_url is not null;
 
 alter table dealers enable row level security;
 
@@ -129,11 +134,12 @@ create policy "Dealers can delete own appointments" on appointments for delete u
 create or replace function public.handle_new_user()
 returns trigger as $$
 begin
-  insert into public.dealers (id, name, email)
+  insert into public.dealers (id, name, email, website_url)
   values (
     new.id,
     coalesce(new.raw_user_meta_data->>'name', ''),
-    new.email
+    new.email,
+    new.raw_user_meta_data->>'website_url'
   );
   return new;
 end;

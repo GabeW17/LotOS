@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/client'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { normalizeDomain } from '@/lib/utils/url'
 import type { Dealer } from '@/types/database'
 
 export default function SettingsPage() {
@@ -44,6 +45,7 @@ export default function SettingsPage() {
       city: dealer.city,
       state: dealer.state,
       zip: dealer.zip,
+      website_url: dealer.website_url ? normalizeDomain(dealer.website_url) : null,
     }).eq('id', dealer.id)
 
     setSaving(false)
@@ -74,6 +76,12 @@ export default function SettingsPage() {
             label="Email"
             value={dealer.email}
             disabled
+          />
+          <Input
+            label="Website URL"
+            value={dealer.website_url ?? ''}
+            onChange={(e) => setDealer({ ...dealer, website_url: e.target.value })}
+            placeholder="https://yourdealership.com"
           />
           <Input
             label="Phone"

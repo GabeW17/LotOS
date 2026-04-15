@@ -26,6 +26,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           state: null,
           zip: null,
           logo_url: null,
+          website_url: null,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         })
@@ -48,7 +49,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ backgroundColor: '#f4f6f3' }}>
+    <div className="flex overflow-hidden" style={{ backgroundColor: '#f4f6f3', height: '100dvh' }}>
       <Sidebar
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}

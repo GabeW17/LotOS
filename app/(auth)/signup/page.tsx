@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
+import { normalizeDomain } from '@/lib/utils/url'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
@@ -15,6 +16,7 @@ export default function SignupPage() {
     email: '',
     phone: '',
     address: '',
+    websiteUrl: '',
     password: '',
   })
   const [error, setError] = useState('')
@@ -40,6 +42,7 @@ export default function SignupPage() {
           full_name: form.name,
           phone: form.phone,
           address: form.address,
+          website_url: form.websiteUrl ? normalizeDomain(form.websiteUrl) : undefined,
         },
       },
     })
@@ -102,6 +105,13 @@ export default function SignupPage() {
         value={form.address}
         onChange={update('address')}
         placeholder="123 Main St, City, ST 12345"
+      />
+
+      <Input
+        label="Website URL"
+        value={form.websiteUrl}
+        onChange={update('websiteUrl')}
+        placeholder="https://yourdealership.com"
       />
 
       <Input

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { normalizeDomain } from '@/lib/utils/url'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -12,15 +13,38 @@ export async function OPTIONS() {
 }
 
 export async function GET(request: NextRequest) {
-  const dealerId = request.nextUrl.searchParams.get('dealer_id')
+  const supabase = createAdminClient()
+  let dealerId = request.nextUrl.searchParams.get('dealer_id')
+
+  // Verify dealer_id actually exists, otherwise clear it so Origin fallback runs
+  if (dealerId) {
+    const { data: exists } = await supabase
+      .from('dealers')
+      .select('id')
+      .eq('id', dealerId)
+      .single()
+    if (!exists) dealerId = null
+  }
+
+  // Try to resolve dealer from Origin header
+  if (!dealerId) {
+    const origin = request.headers.get('origin')
+    if (origin) {
+      const domain = normalizeDomain(origin)
+      const { data: dealer } = await supabase
+        .from('dealers')
+        .select('id')
+        .eq('website_url', domain)
+        .single()
+      if (dealer) dealerId = dealer.id
+    }
+  }
 
   if (!dealerId) {
     return NextResponse.json([], { headers: corsHeaders })
   }
 
   try {
-    const supabase = createAdminClient()
-
     const { data, error } = await supabase
       .from('inventory')
       .select('id, year, make, model, trim, price, mileage, color, description, photos')
